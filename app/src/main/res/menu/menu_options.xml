@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btn_hybrid"
+        android:title="hybrid" />
+
+    <item
+        android:id="@+id/btn_normal"
+        android:title="Normal" />
+
+    <item
+        android:id="@+id/btn_state_line"
+        android:title="State Line" />
+
+    <item
+        android:id="@+id/btn_poly_line"
+        android:title="Poly Line" />
+
+    <item
+        android:id="@+id/btn_draw"
+        android:title="draw" />
+
+
+    <item
+        android:id="@+id/btn_clear"
+        android:title="Clear" />
+
+</menu>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
+
+    <fragment
+        android:name="com.hfad.ad3lesson7.ui.fragment_map.MapFragment"
+        android:id="@+id/fragment1"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+
+<!--    <Button-->
+<!--        android:text="hybrid"-->
+<!--        android:id="@+id/btn_hybird"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <Button-->
+<!--        android:text="normal"-->
+<!--        android:id="@+id/btn_normal"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <Button-->
+<!--        android:text="State line"-->
+<!--        android:id="@+id/btn_state_line"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <Button-->
+<!--        android:text="Poly Line"-->
+<!--        android:id="@+id/btn_poly_line"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <Button-->
+<!--        android:text="Draw"-->
+<!--        android:id="@+id/btn_draw"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <fragment-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/map"-->
+<!--        tools:context=".MapsActivity"-->
+<!--        android:name="com.google.android.gms.maps.SupportMapFragment" />-->
+
+</LinearLayout>
