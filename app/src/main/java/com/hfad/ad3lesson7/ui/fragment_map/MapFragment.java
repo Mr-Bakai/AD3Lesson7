@@ -10,13 +10,20 @@ import android.view.MenuItem;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Dash;
+import com.google.android.gms.maps.model.Dot;
+import com.google.android.gms.maps.model.Gap;
+import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PatternItem;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.hfad.ad3lesson7.App;
 import com.hfad.ad3lesson7.R;
@@ -24,6 +31,7 @@ import com.hfad.ad3lesson7.data.model.PolylineData;
 import com.hfad.ad3lesson7.databinding.FragmentMapBinding;
 import com.hfad.ad3lesson7.ui.base.BaseFragment;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,6 +44,7 @@ public class MapFragment extends BaseFragment<FragmentMapBinding> implements
     private final List<LatLng> coordinationA = new ArrayList<>();
     private List<LatLng> coordinationR = new ArrayList<>();
     private GoogleMap map;
+    private final List<PatternItem> pattern = Arrays.asList(new Dot(), new Gap(10), new Dash(40),new Gap(10));
 
     public MapFragment(){}
 
@@ -114,11 +123,13 @@ public class MapFragment extends BaseFragment<FragmentMapBinding> implements
     }
 
     private void addPolylineOptions(List<LatLng> coordination) {
-        PolylineOptions polylineOptions = new PolylineOptions();
-        polylineOptions.addAll(coordination);
-        polylineOptions.width(13f);
-        polylineOptions.color(Color.DKGRAY);
-        map.addPolyline(polylineOptions);
+        Polyline polyline = map.addPolyline(
+                new PolylineOptions()
+                        .addAll(coordination)
+                        .width(13f)
+                        .jointType(JointType.ROUND)
+                        .color(Color.CYAN));
+        polyline.setPattern(pattern);
     }
 
     @Override
