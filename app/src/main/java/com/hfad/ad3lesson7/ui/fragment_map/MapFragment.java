@@ -41,8 +41,8 @@ public class MapFragment extends BaseFragment<FragmentMapBinding> implements
         GoogleMap.OnMarkerClickListener {
 
     public static final int LOCATION_REQUEST_CODE = 101;
-    private final List<LatLng> coordinationA = new ArrayList<>();
-    private List<LatLng> coordinationR = new ArrayList<>();
+    private  List<LatLng> coordinationA = new ArrayList<>();
+//    private List<LatLng> coordinationR = new ArrayList<>();
     private GoogleMap map;
     private final List<PatternItem> pattern = Arrays.asList(new Dot(), new Gap(10), new Dash(40),new Gap(10));
 
@@ -57,9 +57,8 @@ public class MapFragment extends BaseFragment<FragmentMapBinding> implements
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (!App.latLngRepository.getPolyline().isEmpty()) {
-            List<PolylineData> listPolyline = App.latLngRepository.getPolyline();
-            PolylineData polylineData = listPolyline.get(0);
-            coordinationR = polylineData.getLatLngList();
+            PolylineData polylineData = App.latLngRepository.getPolyline().get(0);;
+            coordinationA = polylineData.getLatLngList();
         }
     }
 
@@ -91,19 +90,21 @@ public class MapFragment extends BaseFragment<FragmentMapBinding> implements
 
             case R.id.btn_poly_line:
                 addPolylineOptions(coordinationA);
+
                 PolylineData polylineData = new PolylineData();
                 polylineData.setLatLngList(coordinationA);
+
                 App.latLngRepository.addPolyline(polylineData);
                 return true;
 
             case R.id.btn_draw:
-                addPolylineOptions(coordinationR);
+                addPolylineOptions(coordinationA);
                 return true;
 
             case R.id.btn_clear:
                 map.clear();
                 coordinationA.clear();
-                coordinationR.clear();
+                App.roomDb.latLngDao().deleteAll();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -118,11 +119,13 @@ public class MapFragment extends BaseFragment<FragmentMapBinding> implements
                         .snippet("Bitch you are here")
                         .draggable(true)
         );
+        marker.setFlat(true);
         marker.showInfoWindow();
         coordinationA.add(latLng);
     }
 
     private void addPolylineOptions(List<LatLng> coordination) {
+        map.clear();
         Polyline polyline = map.addPolyline(
                 new PolylineOptions()
                         .addAll(coordination)
